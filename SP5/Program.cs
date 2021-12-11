@@ -19,28 +19,17 @@ class E3
     {
 
         Dictionary<char, string> registrationLocation = new Dictionary<char, string>();
+        using (var reader = new StreamReader(@"F:\reg_loc.csv"))
+        {
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                if (line == null) continue;
+                var values = line.Split(',');
+                registrationLocation.Add(char.Parse(values[0]), values[1]);
+            }
+        }
 
-        registrationLocation.Add('A', "Anglia");
-        registrationLocation.Add('B', "Birmingham");
-        registrationLocation.Add('C', "Cymru (Wales)");
-        registrationLocation.Add('D', "Deeside");
-        registrationLocation.Add('E', "Essex");
-        registrationLocation.Add('F', "Forest and Fens");
-        registrationLocation.Add('G', "Garden of England");
-        registrationLocation.Add('H', "Hampshire and Dorset");
-        registrationLocation.Add('K', "Luton or Northampton");
-        registrationLocation.Add('L', "London");
-        registrationLocation.Add('M', "Manchester and Merseyside");
-        registrationLocation.Add('N', "Newcastle");
-        registrationLocation.Add('O', "Oxford");
-        registrationLocation.Add('P', "Preston");
-        registrationLocation.Add('R', "Reading");
-        registrationLocation.Add('S', "Scotland");
-        registrationLocation.Add('V', "Severn Valley");
-        registrationLocation.Add('W', "West of England");
-        registrationLocation.Add('X', "Personal Export");
-        registrationLocation.Add('Y', "Yorkshire");
-        
         while (args[0] == "help") { 
                 Help();
                 break;
@@ -104,4 +93,5 @@ class E3
 
 
 }
+
 
